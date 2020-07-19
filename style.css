@@ -1,0 +1,12 @@
+.inputTable {
+    border: 2px solid black;
+    width: 200%;
+}
+
+.inputHeader {
+    text-decoration: underline;
+}
+
+td {
+    text-align: center;
+}
