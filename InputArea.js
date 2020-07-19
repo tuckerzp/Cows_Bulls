@@ -35,20 +35,6 @@ class InputArea {
         this.table.appendChild(tr);
 
         this.parent.appendChild(this.table);
-/** 
-        guesstr = document.createElement("tr");
-        this.guessIn = document.createElement("input");
-        this.guessIn.type = "text";
-        this.guessIn.id = "guess";
-        guessBtn = document.createElement("Button");
-        guessBtn.id = "guessButton";
-        guessBtn.innerHTML = "Guess";
-        guessBtn.addEventListener("click", this.checkCowsBulls());
-        guesstr.appendChild(this.guessIn);
-        guesstr.appendChild(guessBtn);
-
-        this.parent.appendChild(guesstr);
-    */
     }
 
     /**
@@ -84,6 +70,7 @@ class InputArea {
 
     checkCowsBulls() {
         var guess = document.getElementById("guess").value;
+        document.getElementById("guess").value = "";
         var cb = [0, 0];
         var actual = this.number.toString();
         
@@ -104,5 +91,25 @@ class InputArea {
         }
         
         this.addRow(guess, cb[0], cb[1]);
-    }    
+    }
+    
+    gameReset() {
+        this.number = getNumber();
+
+        for (var i = this.table.rows.length - 1; i > 1; i--) {
+            this.table.deleteRow(i);
+        }
+    }
+}
+
+function getNumber(){
+    var num = shuffle( "0123456789".split('') ).join('').substring(0,4);
+    console.log(num);
+    return num;
+}
+      
+function shuffle(o){
+    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    
+    return o;
 }

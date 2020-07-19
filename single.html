@@ -8,6 +8,7 @@
        <link rel="stylesheet" type="text/css" href="style.css"/>
        <script>
         function init() {
+            document.getElementById("guess").value = "";
             playerInput = new InputArea("player", "Computer", getNumber(), true);
         }
    </script>
@@ -18,8 +19,10 @@
             <tr><td><span id="player"/></td></tr>
             <tr>
                 <td><input id="guess"/></td>
-                <td><button id="guessBtn" onclick="playerInput.checkCowsBulls()">Guess</button></td>
+                <td><button id="guessBtn" onclick="playerInput.checkCowsBulls();">Guess</button></td>
             </tr>
         </table>
+        <div class="divide"></div>
+        <button id = "reset" onclick="playerInput.gameReset();">Reset</button>
    </body>
 </html>

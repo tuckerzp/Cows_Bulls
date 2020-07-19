@@ -1,5 +1,7 @@
 function getNumber(){
-    return shuffle( "0123456789".split('') ).join('').substring(0,4);
+    var num = shuffle( "0123456789".split('') ).join('').substring(0,4);
+    console.log(num);
+    return num;
 }
       
 function shuffle(o){
