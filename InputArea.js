@@ -2,8 +2,6 @@ class InputArea {
     
     constructor(id, name, num, com) {
         
-        var guesstr, guessBtn;
-
         this.parent = document.getElementById(id);
         this.table = document.createElement("table");
         this.table.className = "inputTable"
@@ -66,6 +64,8 @@ class InputArea {
         this.table.appendChild(tr);
 
         this.parent.appendChild(this.table);
+
+        this.checkWin(bulls);
     }
 
     checkCowsBulls() {
@@ -74,7 +74,7 @@ class InputArea {
         var cb = [0, 0];
         var actual = this.number.toString();
         
-        if (guess == null) { return; }
+        if (guess == null || !validNumber(guess)) { return; }
 
         for (var i = 0; i < 4; i++) {
             if (guess[i] == actual[i]) {
@@ -100,6 +100,12 @@ class InputArea {
             this.table.deleteRow(i);
         }
     }
+
+    checkWin(bulls) {
+        if (bulls == 4) {
+            alert("You win!");
+        }
+    }
 }
 
 function getNumber(){
@@ -112,4 +118,20 @@ function shuffle(o){
     for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
     
     return o;
+}
+
+function validNumber(number) {
+
+    var valid = true;
+
+    // Check number has four digits 
+    if (number.length != 4)                   { valid = false; }
+
+    // Check number containts only number characters
+    if (number.match(/^[0-9]+$/) == null)     { valid = false; }
+
+    // Check for no repeat digits
+    if (number.match(/([0-9]).*?\1/) != null) { valid = false; }
+
+    return valid;
 }
